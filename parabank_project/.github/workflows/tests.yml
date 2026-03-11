@@ -1,0 +1,51 @@
+name: Run Parabank Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Run Login tests
+      run: python -m behave features/login.feature --format json --outfile rapport_login.json --no-capture
+      continue-on-error: true
+    
+    - name: Run Open Account tests
+      run: python -m behave features/open_account.feature --format json --outfile rapport_open_account.json --no-capture
+      continue-on-error: true
+    
+    - name: Run Bill Pay tests
+      run: python -m behave features/bill_pay.feature --format json --outfile rapport_bill_pay.json --no-capture
+      continue-on-error: true
+    
+    - name: Run Cas Avancés tests
+      run: python -m behave features/cas_de_test_avances.feature --format json --outfile rapport_cas_avances.json --no-capture
+      continue-on-error: true
+    
+    - name: Merge reports
+      run: python fusionner_PARABANK.py
+      continue-on-error: true
+    
+    - name: Generate HTML report
+      run: python generer_rapport_PARABANK.py
+      continue-on-error: true
+    
+    - name: Upload test report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-report
+        path: rapport.html
