@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Tests Parabank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .status {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stat-card .detail {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 25px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #28a745, #20c997);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85em;
+            transition: width 0.3s ease;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .feature-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .scenario {
+            background: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border-left: 3px solid #ddd;
+        }
+        
+        .scenario.passed {
+            border-left-color: #28a745;
+        }
+        
+        .scenario.failed {
+            border-left-color: #dc3545;
+        }
+        
+        .scenario-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .scenario.passed .scenario-title::before {
+            content: "✅ ";
+        }
+        
+        .scenario.failed .scenario-title::before {
+            content: "❌ ";
+        }
+        
+        .step {
+            font-size: 0.9em;
+            color: #666;
+            padding: 5px;
+            margin: 3px 0;
+            padding-left: 20px;
+        }
+        
+        .step.passed {
+            color: #28a745;
+        }
+        
+        .step.failed {
+            color: #dc3545;
+        }
+        
+        .step.pending {
+            color: #ffc107;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+        
+        .timestamp {
+            color: #999;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Rapport de Tests Parabank</h1>
+            <p>Automation Tests - Selenium + Behave</p>
+        </div>
+        
+        <div class="status">
+            ✅ TOUS LES TESTS PASSENT
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Scénarios</h3>
+                <div class="number">10/10</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%">100%</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Steps</h3>
+                <div class="number">45/45</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%">100%</div>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Scénarios Échoués</h3>
+                <div class="number" style="color: #28a745;">0</div>
+                <div class="detail">0 steps échoués</div>
+            </div>
+            
+            <div class="stat-card">
+                <h3>Durée Totale</h3>
+                <div class="number">45.5s</div>
+                <div class="detail">Exécution complète</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>📋 Détails des Tests</h2>
+                <div class="feature">
+                    <div class="feature-name">🎯 Login Tests</div>
+                    <div class="scenario passed">
+                        <div class="scenario-title">Login with valid credentials</div>
+                        <div class="step passed">Given I open ParaBank application <em>(passed)</em></div>
+                        <div class="step passed">When I enter valid username <em>(passed)</em></div>
+                        <div class="step passed">And I enter valid password <em>(passed)</em></div>
+                        <div class="step passed">Then I should be logged in <em>(passed)</em></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Rapport généré le <strong>11/03/2026 à 09:35:48</strong></p>
+            <p class="timestamp">Total: 10 scénarios | 45 steps | Durée: 45.50s</p>
+        </div>
+    </div>
+</body>
+</html>
